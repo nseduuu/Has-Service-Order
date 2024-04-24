@@ -3,6 +3,7 @@ using OsDsII.api.Data;
 using OsDsII.api.Repository.CommentsRepository;
 using OsDsII.api.Repository.CustomersRepository;
 using OsDsII.api.Repository.ServiceOrderRepository;
+using OsDsII.api.Services.Customers;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
@@ -10,12 +11,13 @@ builder.Logging.AddConsole();
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("data source=BRUNO-LEGION5\\SQLEXPRESS;initial catalog=has_service_order;user id=sa;password=123456; TrustServerCertificate=True"));
 });
 // Add services to the container.
 
 builder.Services.AddCors();
 
+builder.Services.AddScoped<ICustomersService, CustomersService>();
 
 builder.Services.AddScoped<IServiceOrderRepository, ServiceOrderRepository>();
 builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
