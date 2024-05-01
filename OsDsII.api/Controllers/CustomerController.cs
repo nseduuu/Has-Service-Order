@@ -1,8 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OsDsII.api.Data;
 using OsDsII.api.Dtos;
+using OsDsII.api.Exceptions;
 using OsDsII.api.Models;
 using OsDsII.api.Repository.CustomersRepository;
 using OsDsII.api.Services.Customers;
@@ -108,17 +107,15 @@ namespace OsDsII.api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateCustomerAsync(Customer customer)
+        public async Task<IActionResult> UpdateCustomerAsync(int id)
         {
             try
             {
-                Customer currentCustomer = await _customersRepository.GetByIdAsync(customer.Id);
-                if (customer is null)
-                {
-                    return NotFound("Customer not found");
-                }
-                await _customersRepository.UpdateCustomerAsync(customer);
+
+                await _customersService.UpdateAsync(id);
+
                 return NoContent();
+
             }
             catch (Exception ex)
             {

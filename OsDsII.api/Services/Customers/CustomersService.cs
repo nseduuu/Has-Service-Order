@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using OsDsII.api.Dtos;
+using OsDsII.api.Exceptions;
 using OsDsII.api.Models;
 using OsDsII.api.Repository.CustomersRepository;
 
@@ -23,10 +25,20 @@ namespace OsDsII.api.Services.Customers
             var customerExists = await _customersRepository.FindUserByEmailAsync(customer.Email);
             if (customerExists != null && !customerExists.Equals(customer))
             {
-                throw new Exception("Customer already exists");
+                throw new ConflictException("Customer already exists");
             }
 
             await _customersRepository.AddCustomerAsync(customer);
+        }
+
+        public async Task UpdateAsync(int id) 
+        {
+            Customer currentCustomer = await _customersRepository.GetByIdAsync(id);
+            if (currentCustomer is null)
+            {
+                throw new NotFoundException("Customer not exist");
+            }
+            await _customersRepository.UpdateCustomerAsync(currentCustomer);
         }
     }
 }
