@@ -1,6 +1,6 @@
 ﻿using OsDsII.api.Models;
 
-namespace OsDsII.api.Dtos
+namespace OsDsII.api.Dtos.Customers
 {
     public record CustomerDto(string Name, string Email, string Phone, List<ServiceOrderDto> ListServiceOrder);
 

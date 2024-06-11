@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using OsDsII.api.Dtos;
+using OsDsII.api.Dtos.Customers;
 using OsDsII.api.Exceptions;
 using OsDsII.api.Models;
 using OsDsII.api.Repository.CustomersRepository;
@@ -21,7 +21,6 @@ namespace OsDsII.api.Controllers
         {
             _customersRepository = customersRepository;
             _mapper = mapper;
-            _customersService = customersService;
             _customersService = customersService;
         }
 

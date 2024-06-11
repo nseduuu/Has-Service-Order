@@ -2,15 +2,15 @@
 
 namespace OsDsII.api.Exceptions
 {
-    public class NotFoundException : BaseException
+    public class BadRequest : BaseException
     {
-        public NotFoundException(string message) :
+        public BadRequest(string message) :
         base
             (
-                "HSO-002", // código identificador de erros // 0 - 400 , 1 - 500, 2 - 200
+                "HSO-001", // código identificador de erros // 0 - 400 , 1 - 500, 2 - 200
                 message,
                 HttpStatusCode.Conflict,
-                StatusCodes.Status404NotFound,
+                StatusCodes.Status400BadRequest,
                 null,
                 DateTimeOffset.UtcNow,
                 null

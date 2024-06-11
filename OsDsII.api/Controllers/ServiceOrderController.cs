@@ -11,14 +11,14 @@ namespace OsDsII.api.Controllers
     public sealed class ServiceOrdersController : ControllerBase
     {
         private readonly IServiceOrderRepository _serviceOrderRepository; // IOC (INVERSION OF CONTROL)
+        private readonly IMapper _mapper;
         private readonly ICustomersRepository _customersRepository;
 
-        public ServiceOrdersController(
-            IServiceOrderRepository serviceOrderRepository,
-            ICustomersRepository customersRepository
+        public ServiceOrdersController( IServiceOrderRepository serviceOrderRepository, IMapper mapper, ICustomersRepository customersRepository
             )
         {
             _serviceOrderRepository = serviceOrderRepository;
+            _mapper = mapper;
             _customersRepository = customersRepository;
         }
 
@@ -55,7 +55,8 @@ namespace OsDsII.api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateServiceOrderAsync(ServiceOrder serviceOrder)
+        
+        public async Task<IActionResult> CreateServiceOrderAsync(CreateServiceOrderDto serviceOrder)
         {
             try
             {
