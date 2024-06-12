@@ -1,4 +1,5 @@
-﻿using OsDsII.api.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OsDsII.api.Data;
 using OsDsII.api.Models;
 
 namespace OsDsII.api.Repository.CustomersRepository

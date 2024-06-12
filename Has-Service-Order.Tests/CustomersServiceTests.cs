@@ -31,7 +31,7 @@ namespace CalculadoraSalario.Tests
                 new CustomerDto("lucas", "nerd@gmail.com", "40028922", null)
             };
 
-            _mockCustomersRepository.Setup(repository => repository.GetAllAsync()).ReturnsAsync(customers);
+            // _mockCustomersRepository.Setup(repository => repository.GetAllAsync()).ReturnsAsync(customers);
             var result = await _service.GetAllAsync();
             Assert.Equal(customers , result);
         }

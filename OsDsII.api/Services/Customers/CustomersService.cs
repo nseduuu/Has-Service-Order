@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using OsDsII.api.Dtos.Customers;
 using OsDsII.api.Exceptions;
 using OsDsII.api.Models;
 using OsDsII.api.Repository.CustomersRepository;
-using Xunit.Sdk;
 
 namespace OsDsII.api.Services.Customers
 {
