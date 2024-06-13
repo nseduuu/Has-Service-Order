@@ -3,7 +3,6 @@ using OsDsII.api.Models;
 
 namespace OsDsII.api.Repository.ServiceOrderRepository
 {
-    // DEPENDENCY INVERSION PRINCIPLE (SOLID  AQUI É O D)
     public interface IServiceOrderRepository
     {
         public Task<List<ServiceOrder>> GetAllAsync();

@@ -6,7 +6,6 @@ namespace OsDsII.api.Repository.ServiceOrderRepository
 {
     public sealed class ServiceOrderRepository : IServiceOrderRepository
     {
-        // DI DATA CONTEXT
         private readonly DataContext _dataContext;
 
         public ServiceOrderRepository(DataContext dataContext)
@@ -56,6 +55,5 @@ namespace OsDsII.api.Repository.ServiceOrderRepository
                  .Include(c => c.Customer)
                  .FirstOrDefaultAsync(s => serviceOrderId == s.Id);
         }
-
     }
 }

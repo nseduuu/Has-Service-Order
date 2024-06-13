@@ -4,6 +4,7 @@ using OsDsII.api.Dtos.ServiceOrders;
 using OsDsII.api.Exceptions;
 using OsDsII.api.Models;
 using OsDsII.api.Services.Comments;
+using OsDsII.api.Services.ServiceOrders;
 
 namespace OsDsII.api.Controllers
 {
@@ -13,7 +14,7 @@ namespace OsDsII.api.Controllers
     {
 
         private ICommentService _commentsService;
-        private OsDsII.api.Services.ServiceOrders.IServiceOrderService _serviceOrderService;
+        private IServiceOrderService _serviceOrderService;
 
         public CommentController(ICommentService commentsService)
         {
