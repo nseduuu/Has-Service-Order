@@ -1,6 +1,6 @@
 ﻿namespace OsDsII.api.Dtos.Comments
 {
-    public class CommentDto
+    public record CommentDto(long Id, string Description, DateTimeOffset SendDate, int ServiceOrderId)
     {
     }
 }
