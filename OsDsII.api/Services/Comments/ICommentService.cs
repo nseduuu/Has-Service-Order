@@ -1,8 +1,10 @@
-﻿namespace OsDsII.api.Services.Comments
+﻿using OsDsII.api.Dtos.Comments;
+using OsDsII.api.Models;
+
+namespace OsDsII.api.Services.Comments
 {
     public interface ICommentService
     {
-        public Task GetCommentAsync(int Id);
-        public Task AddCommentAsync(int Id);
+        public Task<Comment> AddCommentAsync(int serviceOrderId, CommentDto comment);
     }
 }

@@ -2,9 +2,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using OsDsII.api.Dtos.ServiceOrders;
 using OsDsII.api.Exceptions;
-using OsDsII.api.Models;
-using OsDsII.api.Repository.CustomersRepository;
-using OsDsII.api.Repository.ServiceOrderRepository;
 using OsDsII.api.Services.ServiceOrders;
 
 namespace OsDsII.api.Controllers

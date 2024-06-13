@@ -1,5 +1,4 @@
-﻿
-using OsDsII.api.Models;
+﻿using OsDsII.api.Models;
 
 namespace OsDsII.api.Dtos.ServiceOrders
 {
@@ -10,6 +9,6 @@ namespace OsDsII.api.Dtos.ServiceOrders
         StatusServiceOrder Status,
         DateTimeOffset OpeningDate,
         DateTimeOffset FinishDate,
-        List<Comment> Comments 
+        List<Comment> Comments //CommentDTO
         );
 }

@@ -3,7 +3,9 @@ using OsDsII.api.Data;
 using OsDsII.api.Repository.CommentsRepository;
 using OsDsII.api.Repository.CustomersRepository;
 using OsDsII.api.Repository.ServiceOrderRepository;
+using OsDsII.api.Services.Comments;
 using OsDsII.api.Services.Customers;
+using OsDsII.api.Services.ServiceOrders;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
@@ -11,17 +13,20 @@ builder.Logging.AddConsole();
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("data source=BRUNO-LEGION5\\SQLEXPRESS;initial catalog=has_service_order;user id=sa;password=123456; TrustServerCertificate=True"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"));
 });
 // Add services to the container.
 
 builder.Services.AddCors();
 
-builder.Services.AddScoped<ICustomersService, CustomersService>();
 
 builder.Services.AddScoped<IServiceOrderRepository, ServiceOrderRepository>();
 builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
 builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();
+builder.Services.AddScoped<IServiceOrderService, ServiceOrderService>();
+builder.Services.AddScoped<ICustomersService, CustomersService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
+
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers();

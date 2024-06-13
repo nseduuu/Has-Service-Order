@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using OsDsII.api.Dtos.ServiceOrders;
 using OsDsII.api.Exceptions;
 using OsDsII.api.Models;
@@ -22,22 +21,41 @@ namespace OsDsII.api.Services.ServiceOrders
             _mapper = mapper;
         }
 
-        public async Task<List<Dtos.ServiceOrders.ServiceOrderDto>> GetAllAsync()
+        public async Task<List<ServiceOrderDto>> GetAllAsync()
         {
             List<ServiceOrder> serviceOrders = await _serviceOrderRepository.GetAllAsync();
-            var serviceOrderDto = _mapper.Map<List<Dtos.ServiceOrders.ServiceOrderDto>>(serviceOrders);
+            var serviceOrderDto = _mapper.Map<List<ServiceOrderDto>>(serviceOrders);
             return serviceOrderDto;
         }
 
-        public async Task<Dtos.ServiceOrders.ServiceOrderDto> GetServiceOrderAsync(int id)
+        public async Task<ServiceOrderDto> GetServiceOrderAsync(int id)
         {
             ServiceOrder serviceOrder = await _serviceOrderRepository.GetByIdAsync(id);
             if (serviceOrder is null)
             {
                 throw new NotFoundException("Service Order not found");
             }
-            var serviceOrderDto = _mapper.Map<Dtos.ServiceOrders.ServiceOrderDto>(serviceOrder);
+            var serviceOrderDto = _mapper.Map<ServiceOrderDto>(serviceOrder);
             return serviceOrderDto;
+        }
+
+        public async Task<ServiceOrderDto> GetServiceOrderFromUserAsync(int serviceOrderId)
+        {
+            ServiceOrder os = await _serviceOrderRepository.GetServiceOrderFromUser(serviceOrderId);
+
+            if (os == null)
+            {
+                throw new Exception("Service Order not found.");
+            }
+            var serviceOrderDto = _mapper.Map<ServiceOrderDto>(os);
+            return serviceOrderDto;
+        }
+
+        public async Task<ServiceOrderDto> GetServiceOrderWithComments(int serviceOrderId)
+        {
+            ServiceOrder serviceOrderWithComments = await _serviceOrderRepository.GetServiceOrderWithComments(serviceOrderId);
+            var serviceOrder = _mapper.Map<ServiceOrderDto>(serviceOrderWithComments);
+            return serviceOrder;
         }
 
         public async Task<NewServiceOrderDto> CreateServiceOrderAsync(CreateServiceOrderDto createServiceOrderDto)
